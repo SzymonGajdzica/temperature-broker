@@ -14,9 +14,11 @@ public class MeasurementController {
     private final MeasurementRepository repository;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Measurement addMeasurement(@RequestBody Measurement measurement) {
-        if(measurement.getValue() == null || measurement.getMeasurementTypeId() == null || measurement.getStationId() == null)
-            throw new WrongBodyException("measurement:id && station:id && measurementType:id");
+    public Measurement addMeasurement(@RequestBody MeasurementPost measurementPost) {
+        Measurement measurement = new Measurement();
+        measurement.setMeasurementTypeId(measurementPost.getMeasurementTypeId());
+        measurement.setStationId(measurementPost.getStationId());
+        measurement.setValue(measurementPost.getValue());
         return repository.save(measurement);
     }
 
