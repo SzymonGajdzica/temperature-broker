@@ -1,10 +1,11 @@
-package pl.polsl.temperature;
+package pl.polsl.temperature.measurement;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "measurement")
@@ -14,7 +15,6 @@ public class Measurement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Setter(AccessLevel.NONE)
     private Long id;
 
     @Column(name = "date", nullable = false)
